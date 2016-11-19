@@ -1,20 +1,29 @@
-import express from 'express';
-import cors from 'cors';
+function canonize(url){
+	const regexp = /(https?:)(\/\/)?((telegram|vk|vkontakte)[^\/]*\/)?([a-zA-Z0-9]*)/;
+	const username = url.match(regexp);
+	return username;
+}
 
-const app = express();
-app.use(cors());
-app.get('/', (req, res) => {
-  res.json({
-    hello: 'JS World',
-  });
-});
 
-app.get('/task2A', (req, res) => {
- 	const enter = req.query;
-	const sum = (+enter.a || 0 )+ (+enter.b || 0);
- 	res.send(sum.toString());
-});
 
-app.listen(3000, () => {
-  console.log('Your app listening on port 3000!');
+const array = [
+"https://telegram.me/skillbranch",
+"Https://Telegram.me/skillbranch",
+"Https://Telegram.me/SkillBranch",
+"//telegram.me/skillbranch",
+"http://telegram.me/skillbranch",
+"telegram.me/skillbranch",
+"skillbranch",
+"@skillbranch",
+"https://vk.com/skillbranch",
+"http://vk.com/skillbranch",
+"//vk.com/skillbranch",
+"vk.com/skillbranch",
+"vk.com/skillbranch?w=wall-117903599_1076",
+"vk.com/skillbranch/profile"
+];
+
+array.forEach((url) => {
+	const username = canonize(url);
+	console.log(username);
 });
