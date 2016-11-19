@@ -1,13 +1,13 @@
 import express from 'express';
+import cors from 'cors';
 import canonize from './canonize';
 
 const app = express();
-app.get('/', (req, res) => {
-	const username =  canonize(req.query.url);
-	return res.json({
-		url: req.query.url,
-		username,
-  	});	
+app.use(cors());
+
+app.get('/task2C', (req, res) => {
+	const result = canonize(req.query.username);
+	res.send('@'+ result);	
 });
 
 app.listen(3000, () => {

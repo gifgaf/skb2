@@ -1,5 +1,5 @@
-export default function canonize(url){
-	const reg = new RegExp('@?(https?:)?(\/\/)?(www.)?([A-Za-z0-9-]*.([A-Za-z0-9-]*)\/)?(@)?([a-zA-Z0-9._]*)','i');
-	const username = url.match(reg)[7];
-	return '@'+ username;
+export default function canonize(username){
+	const reg = new RegExp("@?(https?:)?(\/\/)?((www\.)?([a-zA-Z0-9-\._])[^\/]*\/)?(@)?([a-zA-Z0-9_]*[\.]*[a-zA-Z0-9_]*)");
+	const result = username.match(reg)[7];
+	return result;
 }
